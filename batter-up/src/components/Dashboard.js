@@ -74,34 +74,76 @@ export default function Dashboard() {
     }
 
     const handleBall = () => {
-        if (homeTeam.atBat && homeTeam.balls < 4) {
-            setHomeTeam.balls(homeTeam.balls + 1);
+        if (homeTeam.atBat && homeTeam.balls < 3) {
+            setHomeTeam({
+                ...homeTeam,
+                balls: homeTeam.balls + 1,
+                pitches: homeTeam.pitches + 1
+            });
         } else if (homeTeam.atBat) {
-            setHomeTeam.balls(0);
-            setHomeTeam.strikes(0);
-        } else if (awayTeam.atBat && awayTeam.balls < 4) {
-            setAwayTeam.balls(awayTeam.balls + 1)
+            setHomeTeam({
+                ...homeTeam,
+                stikes: 0,
+                balls: 0,
+                pitches: homeTeam.pitches + 1
+            });
+        } else if (awayTeam.atBat && awayTeam.balls < 3) {
+            setAwayTeam({
+                ...awayTeam,
+                balls: awayTeam.balls + 1,
+                pitches: awayTeam.pitches + 1
+            });
         } else {
-            setAwayTeam.balls(0);
-            setAwayTeam.strikes(0);
+            setAwayTeam({
+                ...awayTeam,
+                strikes: 0,
+                balls: 0,
+                pitches: awayTeam.pitches + 1
+            });
         }
     }
 
     const handleFoul = () => {
-        if (homeTeam.atBat && homeTeam.stikes < 2) {
-            setHomeTeam.strikes(homeTeam.strikes + 1);
-        } else if (awayTeam.atBat && awayTeam.stikes < 2) {
-            setAwayTeam.strikes(awayTeam.strikes + 1);
+        if (homeTeam.atBat && homeTeam.strikes < 2) {
+            setHomeTeam({
+                ...homeTeam,
+                strikes: homeTeam.strikes + 1,
+                pitches: homeTeam.pitches + 1
+            })
+        } else if (homeTeam.atBat && homeTeam.strikes === 2) {
+            setHomeTeam({
+                ...homeTeam,
+                pitches: homeTeam.pitches + 1
+            })
+        }else if (awayTeam.atBat && awayTeam.strikes < 2) {
+            setAwayTeam({
+                ...awayTeam,
+                strikes: awayTeam.strikes + 1,
+                pitches: awayTeam.pitches + 1
+            })
+        } else {
+            setAwayTeam({
+                ...awayTeam,
+                pitches: awayTeam.pitches + 1
+            })
         }
     }
 
     const handleHit = () => {
         if (homeTeam.atBat) {
-            setHomeTeam.strikes(0);
-            setHomeTeam.balls(0);
+            setHomeTeam({
+                ...homeTeam,
+                strikes: 0,
+                balls: 0,
+                pitches: homeTeam.pitches + 1
+            })            
         } else {
-            setAwayTeam.strikes(0);
-            setAwayTeam.balls(0);
+            setAwayTeam({
+                ...awayTeam,
+                strikes: 0,
+                balls: 0,
+                pitches: awayTeam.pitches + 1
+            })  
         }
     }
 
