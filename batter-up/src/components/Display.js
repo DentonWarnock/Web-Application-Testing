@@ -5,6 +5,9 @@ export default function Display(props) {
     return (
         <div className="display">
 
+            <div>
+                <h3>Inning: {props.inning}</h3>
+            </div>
             <div className="team-one">
                 <h2>Home Team</h2>
                 <p>Strikes: {props.homeTeam.strikes}</p>
@@ -14,10 +17,10 @@ export default function Display(props) {
             </div>
             <div className="team-two">
                 <h2>Away Team</h2>
-                <p></p>
-                <p></p>
-                <p></p>
-                <p></p>
+                <p>Strikes: {props.awayTeam.strikes}</p>
+                <p>Balls: {props.awayTeam.balls}</p>
+                <p>Outs: {props.awayTeam.outs}</p>
+                <p>Total Pitches: {props.awayTeam.pitches}</p>
             </div>
         </div>
     )
